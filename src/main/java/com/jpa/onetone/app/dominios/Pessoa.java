@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Pessoa implements Serializable{
@@ -19,10 +20,12 @@ public class Pessoa implements Serializable{
     private String nome;
     private String telefone;
 
-
+    @OneToOne
+    private Endereco fk_Endereco = new Endereco();
 
     public Pessoa() {
     }
+
 
     public Pessoa(Integer id, String cpf, String nome, String telefone) {
         this.id = id;
@@ -81,6 +84,14 @@ public class Pessoa implements Serializable{
     public Pessoa telefone(String telefone) {
         setTelefone(telefone);
         return this;
+    }
+
+    public Endereco getFk_Endereco() {
+        return this.fk_Endereco;
+    }
+
+    public void setFk_Endereco(Endereco fk_Endereco) {
+        this.fk_Endereco = fk_Endereco;
     }
 
     @Override
